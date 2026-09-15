@@ -1,0 +1,3 @@
+- Born 4 January 1643 (24 December 1642 OS) in Woolsthorpe, England.
+- Authored *Philosophiæ Naturalis Principia Mathematica* (1687), establishing the laws of motion and universal gravitation.
+- Developed calculus (independently of Leibniz) and made seminal contributions to optics; 300 years after his birth was **1943**.
