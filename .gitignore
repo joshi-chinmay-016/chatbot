@@ -1,0 +1,9 @@
+.venv/
+powershell.bat
+__pycache__/
+*.pyc
+.env
+.env.*
+
+
+study_notes/*
