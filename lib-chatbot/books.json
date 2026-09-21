@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Python Crash Course",
+    "author": "Eric Matthes",
+    "category": "Programming",
+    "available": true
+  },
+  {
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "category": "Software Engineering",
+    "available": false
+  },
+  {
+    "title": "Hands-On Machine Learning",
+    "author": "Aur\u00e9lien G\u00e9ron",
+    "category": "Machine Learning",
+    "available": true
+  },
+  {
+    "title": "Artificial Intelligence: A Modern Approach",
+    "author": "Stuart Russell",
+    "category": "AI",
+    "available": true
+  },
+  {
+    "title": "Introduction to Algorithms",
+    "author": "Thomas Cormen",
+    "category": "Algorithms",
+    "available": false
+  },
+  {
+    "title": "Database System Concepts",
+    "author": "Abraham Silberschatz",
+    "category": "Database",
+    "available": true
+  },
+  {
+    "title": "Computer Networking",
+    "author": "James Kurose",
+    "category": "Networking",
+    "available": true
+  },
+  {
+    "title": "The Data Science Handbook",
+    "author": "Field Cady",
+    "category": "Data Science",
+    "available": false
+  },
+  {
+    "title": "Learning Web Design",
+    "author": "Jennifer Robbins",
+    "category": "Web Development",
+    "available": true
+  },
+  {
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "category": "Self Help",
+    "available": true
+  }
+]
