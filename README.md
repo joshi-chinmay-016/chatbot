@@ -1,83 +1,90 @@
-# 🎓 Autonomous Agentic Study Assistant
+# 🤖 Autonomous Agentic AI Ecosystem
 
-A lightweight **Agentic AI** study companion that runs entirely inside a Jupyter Notebook ([chat.ipynb](file:///c:/Agentic%20AI/chatbot/chat.ipynb)), powered by the **Groq API** (`openai/gpt-oss-120b`).
-
----
-
-## 💡 What is this Project?
-
-Unlike standard chatbots that only answer questions from memory, this assistant is an **autonomous AI Agent**. It can:
-- **Think & Plan**: Break complex study tasks into logical steps.
-- **Use Real Tools**: Search the web for facts, calculate equations, and save notes to your hard drive.
-- **Learn & Observe**: Inspect tool outputs before delivering the final answer.
+A modular suite of **Autonomous AI Agents** demonstrating modern agentic architectures, multi-step planning, deterministic tool execution, constraint evaluation, autonomous re-planning, and human-in-the-loop safety controls.
 
 ---
 
-## 🔄 How It Works (The ReAct Loop)
+## 🌟 Projects Overview
 
-The agent follows the **ReAct (Reason $\rightarrow$ Act $\rightarrow$ Observe)** pattern:
+| Project | Folder | Ports (Backend / Frontend) | LLM & Tools | Key Agentic Features |
+| :--- | :--- | :--- | :--- | :--- |
+| **Autonomous Travel Agent** | [`travel-agent/`](file:///c:/Agentic%20AI/chatbot/travel-agent) | Backend: `8000`<br/>Frontend: `5173` | Gemini 2.5 Flash<br/>- `search_transport`<br/>- `search_hotels`<br/>- `calculate_budget`<br/>- `create_itinerary` | Multi-step trip planning, budget arithmetic constraint checking, **autonomous re-planning** upon budget violation, human authorization prompt. |
+| **CMRIT 3D Library Agent** | [`lib-chatbot/`](file:///c:/Agentic%20AI/chatbot/lib-chatbot) | Backend: `8001`<br/>Frontend: `5174` | Gemini 2.5 Flash<br/>- `list_books`<br/>- `prepare_borrow`<br/>- `recommend_books` | **Interactive 3D Virtual Library** (Three.js), book borrow/return lifecycle, autonomous substitute re-planning when books are checked out. |
+| **Autonomous Study Assistant** | [`study-chatbot/`](file:///c:/Agentic%20AI/chatbot/study-chatbot) | Backend: `8002`<br/>Frontend: `5175` | Groq / Gemini<br/>- `search_wikipedia`<br/>- `calculate`<br/>- `save_study_notes` | Autonomous study planner, live Wikipedia knowledge retrieval, formula calculator, and markdown revision note compiler to disk. |
 
-```text
-User Goal ──► LLM Reasons ──► Chooses Tool (Action) ──► Executes in Python ──► Observes Result ──► Final Answer
+---
+
+## 🚀 Quick Start: Launch Any or All Agents
+
+You can launch any agent individually or launch all three concurrently using the unified launcher:
+
+### 1. Launch All Agents Concurrently
+```powershell
+.\start_all.ps1 -Agent all
 ```
+*Or simply run `start_all.bat`.*
 
-1. **User sets a goal** (e.g., *"Research Newton, calculate his age 300 years later, and save notes"*).
-2. **Agent decides** if it needs external tools.
-3. **Agent calls tools**, collects the data, and checks if more steps are needed.
-4. **Agent finishes** and delivers a verified answer and saves any requested files.
+### 2. Launch Individual Agents
+```powershell
+# Launch only the Travel Agent (Ports 8000 & 5173)
+.\start_all.ps1 -Agent travel
 
----
+# Launch only the 3D Library Agent (Ports 8001 & 5174)
+.\start_all.ps1 -Agent library
 
-## 🛠️ Built-in Tools
-
-| Tool | What It Does | Why It Matters |
-| :--- | :--- | :--- |
-| 🔍 **`search_wikipedia`** | Queries live Wikipedia articles via REST API | Fetches verified, up-to-date facts instead of hallucinating. |
-| 🧮 **`calculate`** | Evaluates math/physics formulas in Python | Performs 100% accurate calculations (e.g. roots, powers, dates). |
-| 📝 **`save_study_notes`** | Writes `.md` files directly to `study_notes/` | Creates permanent revision notes and flashcards on your computer. |
-
----
-
-## 📂 Project Structure
-
-```text
-chatbot/
-├── chat.ipynb          # Main Jupyter Notebook (run the agent here)
-├── .env                # Stores your GROQ_API_KEY (kept private)
-├── .gitignore          # Prevents .env from being tracked by git
-├── study_notes/        # Folder where the agent saves generated notes
-│   └── newton_facts.md # Example generated study note
-└── README.md           # Project documentation
+# Launch only the Study Assistant (Ports 8002 & 5175)
+.\start_all.ps1 -Agent study
 ```
 
 ---
 
-## 🚀 Quick Setup & Usage
+## 📋 Running Services Manually
 
-### 1. Configure Your API Key
-In the [.env](file:///c:/Agentic%20AI/chatbot/.env) file, add your Groq API key:
+### Travel Agent
+```bash
+# Backend (Port 8000)
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir travel-agent/backend --port 8000 --reload
+
+# Frontend (Port 5173)
+cd travel-agent/frontend
+npm run dev
+```
+- Web UI: [http://localhost:5173](http://localhost:5173)
+- API Docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- Verification test: `.\.venv\Scripts\python.exe travel-agent/backend/test_agent.py`
+
+### 3D Library Agent
+```bash
+# Backend (Port 8001)
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir lib-chatbot/backend --port 8001 --reload
+
+# Frontend (Port 5174)
+cd lib-chatbot/frontend
+npm run dev
+```
+- Web UI: [http://localhost:5174](http://localhost:5174)
+- API Docs: [http://127.0.0.1:8001/docs](http://127.0.0.1:8001/docs)
+- Verification test: `.\.venv\Scripts\python.exe lib-chatbot/backend/test_agent.py`
+
+### Study Assistant
+```bash
+# Backend (Port 8002)
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir study-chatbot/backend --port 8002 --reload
+
+# Frontend (Port 5175)
+cd study-chatbot/frontend
+npm run dev
+```
+- Web UI: [http://localhost:5175](http://localhost:5175)
+- API Docs: [http://127.0.0.1:8002/docs](http://127.0.0.1:8002/docs)
+- Verification test: `.\.venv\Scripts\python.exe study-chatbot/backend/test_agent.py`
+
+---
+
+## 🔒 Security & Environment Setup
+
+All API keys are maintained in the root `.env` file and excluded from version control via `.gitignore`:
 ```env
-GROQ_API_KEY=gsk_your_actual_groq_api_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
 ```
-*(The [.gitignore](file:///c:/Agentic%20AI/chatbot/.gitignore) ensures your key is never committed.)*
-
-### 2. Run the Notebook
-1. Open [chat.ipynb](file:///c:/Agentic%20AI/chatbot/chat.ipynb).
-2. Select your Python kernel (`.venv`).
-3. Run the cells in order:
-   - **Step 1 & 2**: Initializes Groq client and registers tools.
-   - **Step 3**: Runs an automated test demonstrating tool calling.
-   - **Step 4**: Opens an interactive session where you can enter any study prompt.
-
----
-
-## ⚡ Live Example
-
-**Input Goal:**
-> *"Research Isaac Newton on Wikipedia, calculate what year it was 300 years after his birth (1643), and save a 3-bullet revision note to newton_facts.md"*
-
-**Agent Execution:**
-1. 🛠️ **Action**: Calls `search_wikipedia({'query': 'Isaac Newton'})` $\rightarrow$ Fetches biographical facts.
-2. 🛠️ **Action**: Calls `calculate({'expression': '1643 + 300'})` $\rightarrow$ Evaluates to `1943`.
-3. 🛠️ **Action**: Calls `save_study_notes(...)` $\rightarrow$ Saves `newton_facts.md` inside `study_notes/`.
-4. 🎓 **Final Answer**: Provides complete, verified summary to the user.

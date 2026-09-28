@@ -1,0 +1,3 @@
+@echo off
+echo Starting Autonomous Agentic AI Ecosystem...
+powershell -ExecutionPolicy Bypass -File "%~dp0start_all.ps1" %*
