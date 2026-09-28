@@ -52,3 +52,7 @@ Thumbs.db
 
 # Project-specific temp/local scripts
 powershell.bat
+
+
+lib-chatbot/frontend/node_modules/*
+lib-chatbot/frontend/node_modules
